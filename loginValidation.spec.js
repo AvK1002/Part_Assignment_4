@@ -21,6 +21,17 @@ test.skip('Login with Email Only Validation', async ({ page }) => {
 
 });
 
+//Login with Password Only
+test.skip('Login with Password Only Validation', async ({ page }) => {
+    await page.goto('https://freelance-learn-automation.vercel.app/login');
+    await page.locator('#password1').fill('sibi@gmail.com');
+    await page.locator("//button[@type='submit']").click();
+    await expect(page.locator('.errorMessage')).toBeVisible();
+    await expect(page.locator('.errorMessage')).toHaveText('Email is required');
+    await page.waitForTimeout(2000);
+
+});
+
 
 //Login with Invalid Credentials
 test('Login with Invalid credentials Validation', async ({ page }) => {
